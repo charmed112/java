@@ -17,7 +17,7 @@ public class Lesson_8 {
     public Object first() {
         return numbers.getFirst();
     }
-    public LinkedList getElements() {
+    public LinkedList getNumbers() {
         return numbers;
     }
     public void setElements(LinkedList elements) {
@@ -30,10 +30,10 @@ public class Lesson_8 {
         queue.enqueue(117);
         queue.enqueue(6);
         queue.enqueue(12);
-        System.out.println(queue.getElements());
+        System.out.println(queue.getNumbers());
         queue.dequeue();
         queue.dequeue();
-        System.out.println(queue.getElements());
+        System.out.println(queue.getNumbers());
         System.out.println(queue.first());
     }
 }
