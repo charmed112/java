@@ -1,27 +1,27 @@
 import java.util.LinkedList;
 public class Lesson_8 {
-    private LinkedList elements = new LinkedList();
+    private LinkedList numbers = new LinkedList();
     public Lesson_8() {
     }
     public Lesson_8(LinkedList elements) {
-        this.elements = elements;
+        this.numbers = elements;
     }
     public void enqueue(Object element) {
-        elements.add(element);
+        numbers.add(element);
     }
     public Object dequeue() {
-        Object first = elements.getFirst();
-        elements.removeFirst();
+        Object first = numbers.getFirst();
+        numbers.removeFirst();
         return first;
     }
     public Object first() {
-        return elements.getFirst();
+        return numbers.getFirst();
     }
     public LinkedList getElements() {
-        return elements;
+        return numbers;
     }
     public void setElements(LinkedList elements) {
-        this.elements = elements;
+        this.numbers = elements;
     }
     public static void main(String[] args) {
         Lesson_8 queue = new Lesson_8();
