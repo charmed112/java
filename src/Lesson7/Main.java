@@ -2,7 +2,7 @@ package Lesson7;
 
 public class Main {
     public static void main(String[] args) {
-        Employee e1 = new Employee("Александр", "Иванов", "разработки", 110000);
+        Employee e1 = new Employee("Иван", "Иванов", "разработки", 110000);
         Employee e2 = new Employee("Пётр", "Петров", "администрирования", 150000);
         Employee e3 = new Employee("Пётр", "Петров", "управления", 170000);
 
