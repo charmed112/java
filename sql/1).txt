@@ -1,0 +1,37 @@
+CREATE DATABASE home_worck;
+CREATE TABLE telephone
+(
+id INT PRIMARY KEY NOT NULL,
+Product_Name VARCHAR(30) NOT NULL,
+Manufacturer VARCHAR(30) NOT NULL,
+ProductCount INT NOT NULL,
+Price INT NOT NULL
+);
+
+INSERT telephone(id, Product_Name, Manufacturer, ProductCount, Price)
+VALUES
+(1,"Iphone X", "Apple", 3, 76000),
+(2,"Iphone 8", "Apple", 2, 51000),
+(3,"Galaxy S9", "Samsung", 2, 56000),
+(4,"Galaxy S8", "Samsung", 1, 41000),
+(5,"P20 Pro", "Huawei", 5, 36000);
+
+SELECT Product_Name, Manufacturer, Price FROM telephone
+WHERE ProductCount > 2;
+
+SELECT*
+FROM telephone
+WHERE Manufacturer = "Samsung";
+
+SELECT*
+FROM telephone
+WHERE Product_Name LIKE "Iphone%";
+
+SELECT*
+FROM telephone
+WHERE Manufacturer LIKE "Samsung%";
+
+
+SELECT*
+FROM telephone
+WHERE Product_Name like "%8%";
