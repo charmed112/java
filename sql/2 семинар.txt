@@ -1,0 +1,57 @@
+1 и 2
+CREATE TABLE sales
+(
+id INT PRIMARY KEY NOT NULL,
+order_date VARCHAR(15) NOT NULL,
+bucket VARCHAR(15) NOT NULL
+);
+INSERT INTO sales(id, order_date, bucket)
+VALUES
+(1, "2021-01-01", "100 до 300"),
+(2, "2021-01-02", "100 до 300"),
+(3,"2021-01-03", "меньше 100"),
+(4, "2021-01-04", "100 до 300"),
+(5, "2021-01-05", "больше 300");
+
+SELECT*,
+CASE
+WHEN bucket = "меньше 100" THEN "Маленький заказ"
+WHEN bucket = "100 до 300" THEN "средний заказ"
+WHEN bucket = "больше 300" THEN "Большой заказ"
+ELSE 'Fail'
+END 
+AS orders FROM sales
+ORDER BY bucket DESC;
+
+3)
+CREATE TABLE orders
+(
+Orderid INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+Employeeid VARCHAR(15) NOT NULL,
+Amount DOUBLE NOT NULL,
+OrderStatus VARCHAR(30) NOT NULL
+);
+INSERT INTO orders(Employeeid, Amount, OrderStatus)
+VALUES
+("E03", 15.00, "OPEN"),
+("E01", 25.50, "OPEN"),
+("E05", 100.70, "CLOSED"),
+("E02", 22.18, "OPEN"),
+("E04", 9.50, "CANCELLED"),
+("E04", 99.99, "OPEN");
+
+SELECT*,
+CASE
+WHEN OrderStatus = "OPEN" THEN "Order is in open state"
+WHEN OrderStatus = "OPEN" THEN "Order is in open state"
+WHEN OrderStatus = "CLOSED" THEN "Order is closed"
+WHEN OrderStatus = "OPEN" THEN "Order is in open state"
+WHEN OrderStatus = "CANCELLED" THEN "Order is cancelled"
+WHEN OrderStatus = "OPEN" THEN "Order is in open state"
+ELSE 'Fail'
+END 
+AS FullStatus FROM orders;
+
+4)
+
+В случае SQL - NULL это специальное значение, трактующееся, как "значение не определено". И при сравнениях оно ведёт себя особым образом, всегда выдаёт NULL вместо true или false, не участвует в агрегатных функциях вроде среднего арифметического или count с указанием явного столбца.
