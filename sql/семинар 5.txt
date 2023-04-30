@@ -1,0 +1,98 @@
+CREATE TABLE  AUTO1 
+(       
+	REGNUM VARCHAR(10) PRIMARY KEY, 
+	MARK VARCHAR(10), 
+	COLOR VARCHAR(15),
+  	PRICE_IN_DOLLARS DECIMAL,
+	RELEASEDT DATE, 
+	PHONENUM VARCHAR(15)
+);
+
+INSERT INTO AUTO1 (REGNUM, MARK,	COLOR, PRICE_IN_DOLLARS, RELEASEDT, PHONENUM ) VALUES
+(111114,'LADA', 'КРАСНЫЙ', 18927, date'2008-01-01', '9152222221'),
+(111115,'VOLVO', 'КРАСНЫЙ', 64324, date'2013-01-01', '9173333334'),
+(111116,'BMW', 'СИНИЙ', 132492, date'2015-01-01', '9173333334'),
+(111121,'AUDI', 'СИНИЙ', 55205, date'2009-01-01', '9173333332'),
+(111122,'AUDI', 'СИНИЙ', 45000, date'2011-01-01', '9213333336'),
+(111113,'BMW', 'ЗЕЛЕНЫЙ', 78345, date'2007-01-01', '9214444444'),
+(111126,'LADA', 'ЗЕЛЕНЫЙ', 14980, date'2005-01-01', null),
+(111117,'BMW', 'СИНИЙ', 96023, date'2005-01-01', null),
+(111119,'LADA', 'СИНИЙ', 16700, date'2017-01-01', 9213333331),
+(111120,'SKODA', 'ЗЕЛЕНЫЙ', 30927, date'2008-01-01', '9152222221'),
+(111118,'SKODA', 'ЧЕРНЫЙ', 29001, date'2013-01-01', '9173333334');
+
+#Создайте представление, в которое попадут автомобили стоимостью до 25 000 долларов
+CREATE VIEW c_class_cars
+AS SELECT *
+FROM AUTO1
+WHERE PRICE_IN_DOLLARS < 25000;
+
+#Измените в существующем представлении порог для стоимости: пусть цена будет до 30 000 долларов (используя оператор ALTER VIEW)
+ALTER VIEW c_class_cars 
+AS SELECT MARK, PRICE_IN_DOLLARS
+FROM AUTO1
+WHERE PRICE_IN_DOLLARS < 30000;
+
+#Создайте представление, в котором будут только автомобили марки “Шкода” и “Ауди”
+CREATE VIEW skoda_and_audi
+AS SELECT *
+FROM AUTO1
+WHERE MARK='SKODA' OR MARK='AUDI';
+-----------
+
+CREATE TABLE  Analysis
+(
+an_id INT PRIMARY KEY NOT NULL,
+an_name VARCHAR(30) NOT NULL,
+an_cost INT NOT NULL,
+an_price INT NOT NULL,
+an_group VARCHAR(30) NOT NULL
+);
+
+INSERT Analysis(an_id, an_name, an_cost, an_price, an_group)
+VALUES
+(1,"биохимический анализ крови", 50, 250, "кровь"),
+(2,"общий анализ мочи", 30, 200, "моча"),
+(3,"общий анализ крови", 40, 300, "кровь"),
+(4,"антитела covid", 400, 1500, "кровь"),
+(5,"пцр тест на ковид",100, 1000, "слизистая");
+select * from Analysis;
+
+CREATE TABLE analiz_Groups
+(
+gr_id INT PRIMARY KEY NOT NULL,
+gr_name VARCHAR(15) NOT NULL,
+gr_temp VARCHAR(15) NOT NULL
+);
+
+INSERT analiz_Groups(gr_id, gr_name, gr_temp)
+VALUES
+(1,"кровь", "-10 до -30"),
+(2,"моча", "5 до 20"),
+(3,"слизистая", "10 до -10");
+select * from analiz_Groups;
+
+CREATE TABLE analiz_Orders
+(
+ord_id INT PRIMARY KEY NOT NULL,
+ord_datetime DATE NOT NULL,
+ord_an INT NOT NULL
+);
+
+INSERT analiz_Orders(ord_id, ord_datetime, ord_an)
+VALUES
+(1,"2020-02-04", 1),
+(2,"2020-02-05", 2),
+(3,"2020-02-06", 3),
+(4,"2020-02-07", 1),
+(5,"2020-02-08", 3),
+(6,"2020-02-09", 5);
+select * from analiz_Orders;
+
+
+
+select Analysis.an_name, Analysis.an_price, analiz_Orders.ord_datetime
+from Analysis Analysis
+JOIN analiz_Orders analiz_Orders
+ON analiz_Orders.ord_an=Analysis.an_id
+WHERE analiz_Orders.ord_datetime >"2020-02-04"
